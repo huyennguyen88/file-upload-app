@@ -10,17 +10,20 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    render json: @item
   end
 
   # POST /items
   # POST /items.json
   def create
+
     @item = Item.new(item_params)
 
     if @item.save
-      render :show, status: :created, location: @item
+      @item.upload_drive
+      render json: @item, status: :created, location: @item
     else
-      render json: @item.errors, status: :unprocessable_entity
+      render json: @item, status: :created
     end
   end
 
@@ -48,6 +51,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :description)
+      params.require(:item).permit(:title, :description, :picture)
     end
 end

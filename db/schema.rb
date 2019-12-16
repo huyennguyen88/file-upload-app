@@ -10,13 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_08_035833) do
+ActiveRecord::Schema.define(version: 2019_12_08_104823) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.bigint "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
 end
